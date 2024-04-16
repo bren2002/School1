@@ -1,4 +1,6 @@
 #include "PriorityItem.h"
+#include <string>  
+
 
 PriorityItem::PriorityItem(int pri, std::string priData) : priority(pri), data(priData) {}
 
@@ -38,6 +40,7 @@ std::ostream& operator<<(std::ostream& os, const PriorityItem& pri) {
     os << "[priority=" << pri.getPriority() << ", data=" << pri.getData() << "]";
     return os;
 }
+
 
 
 

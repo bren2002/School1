@@ -1,5 +1,5 @@
-#ifndef PRIORITY_ITEM
-#define PRIORITY_ITEM
+#ifndef PRIORITY_ITEM_H
+#define PRIORITY_ITEM_H
 
 #include <string>
 #include <iostream>
@@ -12,44 +12,18 @@ private:
     string data;
 
 public:
-    PriorityItem(int pri, string priData) : priority(pri), data(priData) {}
+    PriorityItem(int pri, string priData);
+    int getPriority() const;
+    string getData() const;
 
-    bool operator < (const PriorityItem& other) const {
-        return priority < other.priority;
-    }
+    bool operator<(const PriorityItem& other) const;
+    bool operator>(const PriorityItem& other) const;
+    bool operator<=(const PriorityItem& other) const;
+    bool operator>=(const PriorityItem& other) const;
+    bool operator==(const PriorityItem& other) const;
+    bool operator!=(const PriorityItem& other) const;
 
-    bool operator > (const PriorityItem& other) const {
-        return priority > other.priority;
-    }
-
-    bool operator <= (const PriorityItem& other) const {
-        return priority <= other.priority;
-    }
-
-    bool operator >= (const PriorityItem& other) const {
-        return priority >= other.priority;
-    }
-
-    bool operator == (const PriorityItem& other) const {
-        return priority == other.priority;
-    }
-
-    bool operator != (const PriorityItem& other) const {
-        return priority != other.priority;
-    }
-
-    friend ostream& operator<<(ostream& os, const PriorityItem& pri) {
-        os << "[priority=" << pri.priority << ", data=" << pri.data << "]";
-        return os;
-    }
-
-    int getPriority() const {
-        return priority;
-    }
-
-    string getData() const {
-        return data;
-    }
+    friend ostream& operator<<(ostream& os, const PriorityItem& pri);
 };
 
 #endif

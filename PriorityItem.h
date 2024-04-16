@@ -1,8 +1,9 @@
 #ifndef PRIORITY_ITEM_H
 #define PRIORITY_ITEM_H
 
-#include <string>
+#include <string>  
 #include <iostream>
+#include <vector>  
 
 class PriorityItem {
 private:

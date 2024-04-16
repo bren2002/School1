@@ -3,22 +3,21 @@
 
 #include "Heap.h"
 #include <vector>
-#include <algorithm> // for reverse
-using namespace std;
+#include <algorithm> 
 
 template <typename T>
-vector<T> heapSort(const Heap<T>& heap, bool increasingOrder) {
-    Heap<T> copyHeap(heap); 
-    vector<T> sorted;
-    
+std::vector<T> heapSort(const Heap<T>& heap, bool increasingOrder) {
+    Heap<T> copyHeap(heap);
+    std::vector<T> sorted;
+
     while (copyHeap.getSize() > 0) {
         sorted.push_back(copyHeap.remove());
     }
-    
+
     if (!increasingOrder) {
-        reverse(sorted.begin(), sorted.end());
+        std::reverse(sorted.begin(), sorted.end());
     }
-    
+
     return sorted;
 }
 

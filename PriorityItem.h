@@ -4,17 +4,15 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
-
 class PriorityItem {
 private:
     int priority;
-    string data;
+    std::string data;
 
 public:
-    PriorityItem(int pri, string priData);
+    PriorityItem(int pri, std::string priData);
     int getPriority() const;
-    string getData() const;
+    std::string getData() const;
 
     bool operator<(const PriorityItem& other) const;
     bool operator>(const PriorityItem& other) const;
@@ -23,8 +21,9 @@ public:
     bool operator==(const PriorityItem& other) const;
     bool operator!=(const PriorityItem& other) const;
 
-    friend ostream& operator<<(ostream& os, const PriorityItem& pri);
+    friend std::ostream& operator<<(std::ostream& os, const PriorityItem& pri);
 };
 
 #endif
+
 

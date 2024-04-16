@@ -1,8 +1,9 @@
 #ifndef HEAP_H
 #define HEAP_H
 
-#include <vector>
+#include <vector> 
 #include <stdexcept>
+#include <string> 
 
 template<typename T>
 class Heap {
@@ -103,6 +104,7 @@ void Heap<T>::downHeapify(int idx) {
 }
 
 #endif
+
 
 
 

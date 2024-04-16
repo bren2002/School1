@@ -3,7 +3,6 @@
 #include "PriorityItem.h"
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
 
 typedef int INT;
@@ -34,5 +33,6 @@ int main()
    // print resulting vector
    vector<int> ascending(heapSort(unsortedHeap, true));
    // print resulting vector
+   
 }
 

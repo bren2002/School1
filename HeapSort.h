@@ -22,3 +22,4 @@ std::vector<T> heapSort(const Heap<T>& heap, bool increasingOrder) {
 }
 
 #endif
+

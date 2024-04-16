@@ -3,31 +3,30 @@
 
 #include <vector>
 #include <stdexcept>
-using namespace std;
 
 template<typename T>
 class Heap {
 public:
     Heap();
-    Heap(bool isMinHeap);
+    explicit Heap(bool isMinHeap);
     Heap(const T elements[], int arraySize);
     void add(const T& element);
     T remove();
     int getSize() const;
 
 private:
-    vector<T> v;
-    bool isMax = true;
+    std::vector<T> v;
+    bool isMinHeap = false;
     void _swap(int idx1, int idx2);
     void upHeapify(int idx);
     void downHeapify(int idx);
 };
 
 template<typename T>
-Heap<T>::Heap() { }
+Heap<T>::Heap() {}
 
 template<typename T>
-Heap<T>::Heap(bool isMinSort) : isMax(!isMinSort) { } 
+Heap<T>::Heap(bool isMinHeap) : isMinHeap(isMinHeap) {}
 
 template<typename T>
 Heap<T>::Heap(const T elements[], int arraySize) {
@@ -48,7 +47,7 @@ void Heap<T>::add(const T& element) {
 template<typename T>
 T Heap<T>::remove() {
     if (v.empty()) {
-        throw runtime_error("Heap is empty");
+        throw std::runtime_error("Heap is empty. Cannot remove.");
     }
     T element = v.front();
     v.front() = v.back();
@@ -73,7 +72,7 @@ template<typename T>
 void Heap<T>::upHeapify(int idx) {
     while (idx > 0) {
         int parent = (idx - 1) / 2;
-        if ((isMax && v[idx] > v[parent]) || (!isMax && v[idx] < v[parent])) {
+        if ((isMinHeap && v[idx] < v[parent]) || (!isMinHeap && v[idx] > v[parent])) {
             _swap(idx, parent);
             idx = parent;
         } else {
@@ -87,16 +86,16 @@ void Heap<T>::downHeapify(int idx) {
     while (true) {
         int left = 2 * idx + 1;
         int right = 2 * idx + 2;
-        int maxIdx = idx;
-        if (left < v.size() && ((isMax && v[left] > v[maxIdx]) || (!isMax && v[left] < v[maxIdx]))) {
-            maxIdx = left;
+        int minIdx = idx;
+        if (left < v.size() && ((isMinHeap && v[left] < v[minIdx]) || (!isMinHeap && v[left] > v[minIdx]))) {
+            minIdx = left;
         }
-        if (right < v.size() && ((isMax && v[right] > v[maxIdx]) || (!isMax && v[right] < v[maxIdx]))) {
-            maxIdx = right;
+        if (right < v.size() && ((isMinHeap && v[right] < v[minIdx]) || (!isMinHeap && v[right] > v[minIdx]))) {
+            minIdx = right;
         }
-        if (maxIdx != idx) {
-            _swap(idx, maxIdx);
-            idx = maxIdx;
+        if (minIdx != idx) {
+            _swap(idx, minIdx);
+            idx = minIdx;
         } else {
             break;
         }
@@ -104,3 +103,4 @@ void Heap<T>::downHeapify(int idx) {
 }
 
 #endif
+
